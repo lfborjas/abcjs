@@ -43,6 +43,7 @@ ABCPlugin.prototype.start = function() {
   this.errors="";
   var elems = this.getABCContainingElements(this.$("body"));
   var self = this;
+  
   var divs = elems.map(function(i,elem){
       return self.convertToDivs(elem);
     });
@@ -50,6 +51,7 @@ ABCPlugin.prototype.start = function() {
   divs.each(function(i,elem){
       self.render(elem,self.$(elem).data("abctext"));
     });
+  
 };
 
 // returns a jquery set of the descendants (including self) of elem which have a text node which matches "X:"
