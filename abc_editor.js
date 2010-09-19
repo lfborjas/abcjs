@@ -86,13 +86,13 @@ function ABCEditor(editarea, params) {
   this.updateRendering();
 }
 
-ABCEditor.prototype.updateRendering = function() {
+ABCEditor.prototype.updateRendering = function(text) {
   if (this.bIsPaused)
     return;
   if (this.bReentry)
     return; // TODO is this likely?
   this.bReentry = true;
-  var t = this.editarea.getString();
+  var t = text ? text : this.editarea.getString();
   if (t===this.oldt) {
     this.updateSelection();
     this.bReentry = false; 
@@ -103,7 +103,7 @@ ABCEditor.prototype.updateRendering = function() {
   var This = this;
   var doRendering = function() {
 	  This.timerId = null;
-	  t = This.editarea.getString();	// need to get the text again because it might have changed since the callback.
+	  t = text? text: This.editarea.getString();	// need to get the text again because it might have changed since the callback.
 	  This.oldt = t;
 	  // clear out any old tune
 	  This.div.innerHTML = "";
